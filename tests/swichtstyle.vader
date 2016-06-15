@@ -5,6 +5,6 @@ Then:
   Assert before_var == 'aaaa   thisistheI'
 Execute:
   let my_var='bbbb    thisistheIWtest aaaa'
-  let after_var = switchstyle#after_position(my_bar, 17)
-" Then:
-"   Assert after_va == 'Wtest aaaa'
+  let after_var = switchstyle#after_position(my_var, 17)
+Then:
+  Assert after_var == 'Wtest aaaa'
