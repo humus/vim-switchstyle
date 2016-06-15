@@ -1,0 +1,5 @@
+Execute:
+  let my_var='aaaa   thisistheIWtotest bbbb'
+  let before_var = switchstyle#beforePosition(my_var, 17)
+Then:
+  Assert before_var = 'aaa   thisisthe'
