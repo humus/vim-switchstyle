@@ -1,5 +1,10 @@
 Execute:
   let my_var='aaaa   thisistheIWtotest bbbb'
-  let before_var = switchstyle#beforePosition(my_var, 17)
+  let before_var = switchstyle#before_position(my_var, 17)
 Then:
-  Assert before_var = 'aaa   thisisthe'
+  Assert before_var == 'aaaa   thisistheI'
+Execute:
+  let my_var='bbbb    thisistheIWtest aaaa'
+  let after_var = switchstyle#after_position(my_bar, 17)
+" Then:
+"   Assert after_va == 'Wtest aaaa'
