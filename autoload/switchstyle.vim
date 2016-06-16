@@ -26,25 +26,20 @@ fun! switchstyle#end_iw_index(str, index) "{{{
 endfunction "}}}
 
 fun! switchstyle#validate_bounds(str, index) "{{{
-  if a:str[a:index] =~ '\v[[:space:]]'
-    return 0
-  endif
-  if a:index >= len(a:str)
-    return 0
-  endif
-  return 1
+  return a:str[a:index] !~ '\v[[:space:]]' &&
+        \ a:index < len(a:str)
 endfunction "}}}
 
 fun! switchstyle#get_boundary_list(str, index) "{{{
-  let index_1 = switchstyle#start_iw_index(a:str, a:index)
-  let index_2 = switchstyle#end_iw_index(a:str, a:index)
+  let lower_bound = switchstyle#start_iw_index(a:str, a:index)
+  let upper_bound = switchstyle#end_iw_index(a:str, a:index)
 
-  if index_1 == -1 || index_2 == -1
+  if lower_bound == -1 || upper_bound == -1
     echohl WARNINGMSG | echo 'Not a word' | echohl NORMAL
     return []
   endif
 
-  return [a:str[0:index_1-1], a:str[index_1 : index_2-1], a:str[index_2 : ]]
+  return [a:str[0:lower_bound-1], a:str[lower_bound : upper_bound-1], a:str[upper_bound : ]]
 endfunction "}}}
 
 " vim: sw=2 ts=2 et
