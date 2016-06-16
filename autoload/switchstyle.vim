@@ -51,4 +51,25 @@ fun! switchstyle#dettect_style(str) "{{{
   endif
 endfunction "}}}
 
+fun! switchstyle#switch(str) "{{{
+  let result = switchstyle#apply_replacement(a:str, switchstyle#dettect_style(a:str))
+  return result
+endfunction "}}}
+
+fun! switchstyle#apply_replacement(str, key) "{{{
+  let Sfunction=s:dict_switches[a:key]
+  let rep = Sfunction(a:str)
+  return rep
+endfunction "}}}
+
+fun! switchstyle#cammel_to_snake(cammel_str) "{{{
+  return substitute(substitute(a:cammel_str, '\v\C([[:lower:]])@<=\zs\ze[[:upper:]]', '_', 'g'), '\v.+', '\L&', '')
+endfunction "}}}
+
+fun! switchstyle#snake_to_cammel(snake_str) "{{{
+endfunction "}}}
+
+
+let s:dict_switches = {'X': function('switchstyle#cammel_to_snake'), '_': function('switchstyle#snake_to_cammel')}
+
 " vim: sw=2 ts=2 et
