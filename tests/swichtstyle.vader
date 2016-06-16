@@ -26,4 +26,11 @@ Execute:
 Then:
   Assert my_start_word_index == 0
 
+Execute:
+  let my_var = 'aaa    thisistheIWtotest bbb'
+  let my_end_word_index=switchstyle#end_iw_index(my_var, 1)
+Then:
+  Assert my_end_word_index == 3
+
+
 

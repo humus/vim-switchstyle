@@ -16,4 +16,10 @@ fun! switchstyle#start_iw_index(str, index) "{{{
   return len(prev_str) - len(str_from_iw)
 endfunction "}}}
 
+fun! switchstyle#end_iw_index(str, index) "{{{
+  let after_str = switchstyle#after_position(a:str, a:index)
+  let str_after = matchstr(after_str, '\c\v.*([^a-z0-9_$])@=\ze.*$')
+  return a:index + len(str_after) + 1
+endfunction "}}}
+
 " vim: sw=2 ts=2 et
