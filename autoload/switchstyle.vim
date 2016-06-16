@@ -35,4 +35,16 @@ fun! switchstyle#validate_bounds(str, index) "{{{
   return 1
 endfunction "}}}
 
+fun! switchstyle#get_boundary_list(str, index) "{{{
+  let index_1 = switchstyle#start_iw_index(a:str, a:index)
+  let index_2 = switchstyle#end_iw_index(a:str, a:index)
+
+  if index_1 == -1 || index_2 == -1
+    echohl WARNINGMSG | echo 'Not a word' | echohl NORMAL
+    return []
+  endif
+
+  return [a:str[0:index_1-1], a:str[index_1 : index_2-1], a:str[index_2 : ]]
+endfunction "}}}
+
 " vim: sw=2 ts=2 et

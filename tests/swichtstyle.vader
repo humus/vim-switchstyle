@@ -50,4 +50,11 @@ Execute:
 Then:
   Assert my_end_word_index == -1
 
-
+Execute:
+  let my_var = 'xxx yy_yy_yy zzz'
+  let my_desc_list = switchstyle#get_boundary_list(my_var, 7)
+Then:
+  Assert 'xxx ' == my_desc_list[0]
+  Assert 'yy_yy_yy' == my_desc_list[1]
+  Assert ' zzz' == my_desc_list[2]
+  Assert join(my_desc_list, '') == my_var
