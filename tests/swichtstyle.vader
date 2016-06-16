@@ -32,5 +32,22 @@ Execute:
 Then:
   Assert my_end_word_index == 3
 
+Execute:
+  let my_var = 'aaa    thisistheIWtotest bbb'
+  let my_end_word_index=switchstyle#end_iw_index(my_var, 3)
+Then:
+  Assert my_end_word_index == -1
+
+Execute:
+  let my_var = 'aaa    thisistheIWtotest bbb'
+  let my_end_word_index=switchstyle#end_iw_index(my_var, 22)
+Then:
+  Assert my_end_word_index == 24
+
+Execute:
+  let my_var = 'aaa    thisistheIWtotest bbb'
+  let my_end_word_index=switchstyle#end_iw_index(my_var, 28)
+Then:
+  Assert my_end_word_index == -1
 
 
