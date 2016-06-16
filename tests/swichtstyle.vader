@@ -8,3 +8,22 @@ Execute:
   let after_var = switchstyle#after_position(my_var, 17)
 Then:
   Assert after_var == 'Wtest aaaa'
+
+Execute:
+  let my_var='aaaa   thisistheIWtotest bbbb'
+  let my_start_word_index=switchstyle#start_iw_index(my_var, 17)
+Then:
+  Assert my_start_word_index == 7
+Execute:
+  let my_var='aaaaxxx   thisistheIWtotest bbbb'
+  let my_start_word_index=switchstyle#start_iw_index(my_var, 17)
+Then:
+  Assert my_start_word_index == 10
+
+Execute:
+  let my_var = 'aaa    thisistheIWtotest bbb'
+  let my_start_word_index=switchstyle#start_iw_index(my_var, 2)
+Then:
+  Assert my_start_word_index == 0
+
+
