@@ -61,7 +61,7 @@ Then:
 Execute:
   let my_response = switchstyle#dettect_style('xxYYY')
 Then:
-  Assert my_response == ''
+  Assert my_response == 'X'
 Execute:
   let my_response = switchstyle#dettect_style('xx_YYY')
 Then:

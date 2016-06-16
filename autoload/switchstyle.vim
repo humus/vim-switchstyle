@@ -44,7 +44,7 @@ endfunction "}}}
 
 fun! switchstyle#dettect_style(str) "{{{
   if a:str =~ '\C\v^[^A-Z_]+[A-Z].*'
-    return ''
+    return 'X'
   endif
   if a:str =~ '\c\v^[a-z0-9]+_'
     return '_'
