@@ -58,3 +58,11 @@ Then:
   Assert 'yy_yy_yy' == my_desc_list[1]
   Assert ' zzz' == my_desc_list[2]
   Assert join(my_desc_list, '') == my_var
+Execute:
+  let my_response = switchstyle#dettect_style('xxYYY')
+Then:
+  Assert my_response == ''
+Execute:
+  let my_response = switchstyle#dettect_style('xx_YYY')
+Then:
+  Assert my_response == '_'

@@ -42,4 +42,13 @@ fun! switchstyle#get_boundary_list(str, index) "{{{
   return [a:str[0:lower_bound-1], a:str[lower_bound : upper_bound-1], a:str[upper_bound : ]]
 endfunction "}}}
 
+fun! switchstyle#dettect_style(str) "{{{
+  if a:str =~ '\C\v^[^A-Z_]+[A-Z].*'
+    return ''
+  endif
+  if a:str =~ '\c\v^[a-z0-9]+_'
+    return '_'
+  endif
+endfunction "}}}
+
 " vim: sw=2 ts=2 et
