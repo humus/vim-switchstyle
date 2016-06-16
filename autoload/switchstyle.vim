@@ -69,6 +69,21 @@ fun! switchstyle#snake_to_cammel(snake_str) "{{{
   return substitute(a:snake_str, '\v\C[[:alpha:]$]\zs_([[:alpha:]])', '\u\1', 'g')
 endfunction "}}}
 
+fun! switchstyle#from_array_to_str_with_replacement(array_boundaries) "{{{
+  let local_array = copy(a:array_boundaries)
+  let local_array[1] = switchstyle#switch(local_array[1])
+  return join(local_array, '')
+endfunction "}}}
+
+fun! switchstyle#zwap_innerword(line_str, index) "{{{
+  let array_bounds = switchstyle#get_boundary_list(a:line_str, a:index)
+  if empty(array_bounds)
+    return
+  endif
+  let new_line = switchstyle#from_array_to_str_with_replacement(array_bounds)
+  call setline(line('.'), new_line)
+endfunction "}}}
+
 let s:dict_switches = {'X': function('switchstyle#cammel_to_snake'), '_': function('switchstyle#snake_to_cammel')}
 
 " vim: sw=2 ts=2 et

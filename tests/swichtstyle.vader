@@ -103,3 +103,35 @@ Execute:
 Then:
   Assert my_rep != '0'
   Assert my_rep ==# 'xxxYyyZzzAaa'
+
+Execute:
+  let my_rep = switchstyle#from_array_to_str_with_replacement(['        String ', 'my_string', '; //Sample String'])
+Then:
+  Assert my_rep ==# '        String myString; //Sample String'
+
+Execute:
+  let my_rep = switchstyle#from_array_to_str_with_replacement(['        String ', 'from_array_to_str_with_replacement', '; //Sample String'])
+Then:
+  Assert my_rep ==# '        String fromArrayToStrWithReplacement; //Sample String'
+Given:
+            String fromArrayToStrWithReplacement; //Sample String'
+Execute:
+  normal fT
+  call switchstyle#zwap_innerword(getline(line('.')), col('.')-1)
+Expect:
+            String from_array_to_str_with_replacement; //Sample String'
+
+Given:
+            String from_array_to_str_with_replacement; //Sample String'
+Execute:
+  normal f_
+  call switchstyle#zwap_innerword(getline(line('.')), col('.')-1)
+Expect:
+            String fromArrayToStrWithReplacement; //Sample String'
+Given:
+            String from_array_to_str_with_replacement; //Sample String'
+Execute:
+  normal f_
+  normal yz
+Expect:
+            String fromArrayToStrWithReplacement; //Sample String'
