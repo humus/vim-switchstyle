@@ -74,3 +74,32 @@ Execute:
 Then:
   Assert replacement ==# 'xxx_yyy'
 
+Execute:
+  let my_rep = switchstyle#switch('xxx_yyy')
+Then:
+  Assert my_rep != '0'
+  Assert my_rep ==# 'xxxYyy'
+
+Execute:
+  let my_rep = switchstyle#switch('xxx_yyyZzz_aaa')
+Then:
+  Assert my_rep != '0'
+  Assert my_rep ==# 'xxxYyyZzzAaa'
+
+Execute:
+  let my_rep = switchstyle#switch('xxxYyy_zzzAaa')
+Then:
+  Assert my_rep != '0'
+  Assert my_rep ==# 'xxx_yyy_zzz_aaa'
+
+Execute:
+  let my_rep = switchstyle#switch('xxxYyyZzzAaa')
+Then:
+  Assert my_rep != '0'
+  Assert my_rep ==# 'xxx_yyy_zzz_aaa'
+
+Execute:
+  let my_rep = switchstyle#switch('xxx_yyy_zzz_aaa')
+Then:
+  Assert my_rep != '0'
+  Assert my_rep ==# 'xxxYyyZzzAaa'

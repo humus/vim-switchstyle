@@ -58,8 +58,7 @@ endfunction "}}}
 
 fun! switchstyle#apply_replacement(str, key) "{{{
   let Sfunction=s:dict_switches[a:key]
-  let rep = Sfunction(a:str)
-  return rep
+  return Sfunction(a:str)
 endfunction "}}}
 
 fun! switchstyle#cammel_to_snake(cammel_str) "{{{
@@ -67,8 +66,8 @@ fun! switchstyle#cammel_to_snake(cammel_str) "{{{
 endfunction "}}}
 
 fun! switchstyle#snake_to_cammel(snake_str) "{{{
+  return substitute(a:snake_str, '\v\C[[:alpha:]$]\zs_([[:alpha:]])', '\u\1', 'g')
 endfunction "}}}
-
 
 let s:dict_switches = {'X': function('switchstyle#cammel_to_snake'), '_': function('switchstyle#snake_to_cammel')}
 
